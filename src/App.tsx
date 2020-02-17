@@ -1,25 +1,21 @@
 import React from 'react';
 import './App.css';
-import ToDoStatistics from './components/ToDoStatistics';
-import ToDoCreator from './components/ToDoCreator';
-import ToDoList from './components/ToDoList';
+import { BrowserRouter as Router, Route } from 'react-router-dom';
 import { Provider } from 'react-redux';
 import store from './redux/store';
+import ToDoConsole from './components/ToDoConsole';
+import { render } from '@testing-library/react';
 
 const App = () => {
   return (
     <Provider store={store}>
     <div className="container">
-        <div className="row p-3">
-          <div className="col-2">
-              <ToDoStatistics></ToDoStatistics>
-          </div>
-          <div className="col">
-            <ToDoCreator></ToDoCreator>
-            <ToDoList></ToDoList>
-          </div>
-
-        </div>
+      <Router>
+        <Route exact path="/" component={ToDoConsole}></Route>
+        <Route exact path="/rp" component={() => <div>Risk party component</div>}></Route>
+        <Route exact path="/op" component={() => <div>opportunity component</div>}></Route>
+        <Route exact path="/ecm" component={() => <div>ECM component</div>}></Route>
+      </Router>
     </div>
     </Provider>
   );

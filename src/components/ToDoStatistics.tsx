@@ -3,7 +3,7 @@ import {useSelector} from 'react-redux';
 import { TodoAppState, Todo, StatusCount } from './../redux/Todo/todoReducer';
 
 type ToDoStatisticsProps = {
-    
+    id: string;    
 }
 
 const getTodos = (state: TodoAppState) => {
@@ -13,7 +13,7 @@ const getTodos = (state: TodoAppState) => {
 const groupBy = (todos: Todo[]): Array<StatusCount> => {
         const statusCounts = new Array<StatusCount>();
         todos.forEach( t => {
-            const e = statusCounts.find(s => s.status == t.status)
+            const e = statusCounts.find(s => s.status === t.status)
             if(e){
                 e.value = e.value + 1;
             }else {
